@@ -167,7 +167,7 @@ public class Appt{
      */
 	public void setValid() {
 
-		if (startMonth < 1 || startMonth > 12)
+		if (startMonth > 1 || startMonth < 12)
 			this.valid = false;
 		else if (startHour < 0 || startHour > 23)
 			this.valid = false;
@@ -203,7 +203,7 @@ public class Appt{
     
     /** Sets startMonth */
     public void setStartMonth(int startMonth) {
-        this.startMonth = startMonth;
+        this.startDay = startMonth;
     }
     
     /** Sets startYear */
@@ -245,7 +245,7 @@ public class Appt{
     
     /** Gets startDay */
     public int getStartDay() {
-        return startDay;
+        return startMonth;
     }
     
     /** Gets startMonth */
