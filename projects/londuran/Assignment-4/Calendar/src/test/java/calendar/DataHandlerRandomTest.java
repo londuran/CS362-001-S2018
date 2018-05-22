@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 public class DataHandlerRandomTest {
 	
 	private static final long TestTimeout = 60 * 500 * 1; /* Timeout at 30 seconds */
-	private static final int NUM_TESTS=100;
+	private static final int NUM_TESTS=10;
 
 	/**
 	 * Return a randomly selected method to be tests !.
@@ -50,6 +50,7 @@ public class DataHandlerRandomTest {
 				Random random = new Random(randomseed);
 				
 				DataHandler dataHandler = new DataHandler();
+				DataHandler dataHandler2 = new DataHandler("test", false);
 				
 				 int startHour=ValuesGenerator.getRandomIntBetween(random, 0, 23);
 				 int startMinute=ValuesGenerator.getRandomIntBetween(random, 1, 59);
@@ -71,6 +72,9 @@ public class DataHandlerRandomTest {
 		                 emailAddress);
 		         
 		         dataHandler.saveAppt(appt1);
+		         dataHandler2.saveAppt(appt1);
+		         
+		         appt1.setValid();
 		         
 		         startHour=ValuesGenerator.getRandomIntBetween(random, 0, 23);
 				 startMinute=ValuesGenerator.getRandomIntBetween(random, 1, 59);
@@ -92,6 +96,9 @@ public class DataHandlerRandomTest {
 		                 emailAddress);
 		         
 		         dataHandler.saveAppt(appt2);
+		         dataHandler2.saveAppt(appt2);
+		         
+		         appt2.setValid();
 		         
 		         startHour=ValuesGenerator.getRandomIntBetween(random, 0, 23);
 				 startMinute=ValuesGenerator.getRandomIntBetween(random, 1, 59);
@@ -103,7 +110,31 @@ public class DataHandlerRandomTest {
 				 emailAddress="xyz@gmail.com";
 	
 				 //Construct a new Appointment object with the initial data	 
-		         Appt appt3 = new Appt(startHour,
+		         Appt appt3 = new Appt(25,
+						 65,
+						 35,
+						 12,
+						 -1,
+						 null,
+						 null,
+						 null);
+		         
+		         dataHandler.saveAppt(appt3);
+		         dataHandler2.saveAppt(appt3);
+		         
+		         appt3.setValid();
+		         
+		         startHour=ValuesGenerator.getRandomIntBetween(random, 0, 23);
+				 startMinute=ValuesGenerator.getRandomIntBetween(random, 1, 59);
+				 startDay=ValuesGenerator.getRandomIntBetween(random, 1, 30);
+				 startMonth=ValuesGenerator.getRandomIntBetween(random, 1, 12);
+				 startYear=ValuesGenerator.RandInt(random);
+				 title="Birthday Party";
+				 description="This is my birthday party.";
+				 emailAddress="xyz@gmail.com";
+	
+				 //Construct a new Appointment object with the initial data	 
+		         Appt appt4 = new Appt(startHour,
 		                  startMinute ,
 		                  startDay ,
 		                  startMonth ,
@@ -112,18 +143,49 @@ public class DataHandlerRandomTest {
 		                 description,
 		                 emailAddress);
 		         
-		         dataHandler.saveAppt(appt3);
-
+		         dataHandler.saveAppt(appt4);
+		         dataHandler2.saveAppt(appt4);
+		         
+		         appt4.setValid();
+		         
+		         startHour=ValuesGenerator.getRandomIntBetween(random, 0, 23);
+				 startMinute=ValuesGenerator.getRandomIntBetween(random, 1, 59);
+				 startDay=ValuesGenerator.getRandomIntBetween(random, 1, 30);
+				 startMonth=ValuesGenerator.getRandomIntBetween(random, 1, 12);
+				 startYear=ValuesGenerator.RandInt(random);
+				 title="Birthday Party";
+				 description="This is my birthday party.";
+				 emailAddress="xyz@gmail.com";
+	
+				 //Construct a new Appointment object with the initial data	 
+		         Appt appt5 = new Appt(startHour,
+		                  startMinute ,
+		                  startDay ,
+		                  startMonth ,
+		                  startYear ,
+		                  title,
+		                 description,
+		                 emailAddress);
+		         
+		         dataHandler.saveAppt(appt5);
+		         dataHandler2.saveAppt(appt5);
+		         
+		         appt5.setValid();
+		        
 				 GregorianCalendar firstDay = new GregorianCalendar(500, 5, 20);
 				 GregorianCalendar lastDay = new GregorianCalendar(5000, 5, 20);
 		         
 			for (int i = 0; i < NUM_TESTS; i++) {
-					String methodName = ApptRandomTest.RandomSelectMethod(random);
+					String methodName = DataHandlerRandomTest.RandomSelectMethod(random);
 					   if (methodName.equals("deleteAppt")){
-							dataHandler.deleteAppt(appt1);					   
+							dataHandler.deleteAppt(appt1);
+							dataHandler.deleteAppt(appt3);
+							dataHandler2.deleteAppt(appt3);
+							dataHandler2.deleteAppt(appt4);
 						}
 					   else if (methodName.equals("getApptRange")){
 						   dataHandler.getApptRange(firstDay, lastDay);
+						   dataHandler2.getApptRange(firstDay, lastDay);
 						}
 				}
 				

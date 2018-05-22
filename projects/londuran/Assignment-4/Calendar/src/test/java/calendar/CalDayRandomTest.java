@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 public class CalDayRandomTest {
 	
 	private static final long TestTimeout = 60 * 500 * 1; /* Timeout at 30 seconds */
-	private static final int NUM_TESTS=100;
+	private static final int NUM_TESTS=10;
 
     /**
      * Generate Random Tests that tests CalDay Class.
@@ -62,22 +62,25 @@ public class CalDayRandomTest {
 				          title,
 				          description,
 				          emailAddress);
+				 appt1.setValid();
 			 if(!appt1.getValid())continue;
 
-				Appt appt2 = new Appt(15,
-					 30,
-					 9,
+				Appt appt2 = new Appt(25,
+					 65,
+					 35,
 					 12,
-					 2018,
+					 -1,
 					 null,
 					 null,
 					 null);
+				appt2.setValid();
 
 			for (int i = 0; i < NUM_TESTS; i++) {
 						   calday2.addAppt(appt1);
-						   calday2.addAppt(appt2);						  
+						   calday2.addAppt(appt2);
+						   int value;
 							for(int j = 0; j < 5; j++){
-								int value = ValuesGenerator.getRandomIntBetween(random, 0, 25);
+								value = ValuesGenerator.getRandomIntBetween(random, 0, 25);
 								appt2.setStartHour(value);
 								calday2.addAppt(appt2);
 							}				   
